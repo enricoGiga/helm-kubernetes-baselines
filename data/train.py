@@ -2,6 +2,8 @@
 from sklearn.ensemble import VotingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.preprocessing import MinMaxScaler
@@ -44,6 +46,7 @@ estimators = []
 estimators.append(("logistic", LogisticRegression()))
 estimators.append(("cart", DecisionTreeClassifier()))
 estimators.append(("svm", SVC()))
+estimators.append(("rfc", RandomForestClassifier()))
 
 # Create the Ensemble Model
 ensemble = VotingClassifier(estimators)
@@ -59,9 +62,14 @@ pipe = Pipeline(
 
 # Train the model
 pipe.fit(X_train, y_train)
-
+# Calculate accuracy
+accuracy = round(pipe.score(X_test, y_test), 3) * 100
 # Test Accuracy
-print("Accuracy: %s%%" % str(round(pipe.score(X_test, y_test), 3) * 100))
+print("Accuracy: %s%%" % str(accuracy))
 
+
+# Write accuracy to a file
+with open("accuracy.txt", "w") as file:
+    file.write(str(accuracy))
 # Export model
 joblib.dump(pipe, gzip.open("model_binary.dat.gz", "wb"))

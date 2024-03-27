@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: challenge-uncommon-imp
+  pullPolicy: IfNotPresent
+  tag: ""
+
+service:
+  type: ClusterIP
+  port: 8080
+
+labels:
+  app: challenge-uncommon-imp
+
+ingress:
+  enabled: false
+
+resources: {}

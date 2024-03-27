@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "challenge-uncommon-imp.fullname" . }}
+  labels:
+    {{- include "challenge-uncommon-imp.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30080
+  selector:
+    {{- include "challenge-uncommon-imp.selectorLabels" . | nindent 4 }}
