@@ -54,4 +54,16 @@ Here's a brief explanation of some of the metrics:
 - `model_accuracy`: The accuracy of the model prediction.
 - `model_prediction_time`: The time spent processing model predictions.
 
-This is a standard way to expose metrics for monitoring in a microservices environment. 
+
+
+## Stress testing with Locust
+Locust is a popular open-source load testing tool that allows you to define user behavior with Python code. You can use Locust to simulate thousands of users interacting with your application and measure its performance under load.
+1. Run the following command to start the Locust web interface:
+
+   ```shell
+      locust -f locustfile.py
+   ```
+2. Open your web browser and navigate to `http://localhost:8089` to access the Locust web interface.
+3. Enter the number of users to simulate, the hatch rate (number of users to spawn per second), and the host URL of your application (http://0.0.0.0:8080).
+
+
